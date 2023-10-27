@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+  redis_data:
+
+services:
+  redis:
+    image: "redis:latest"
+    volumes:
+      - redis_data:/data
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
